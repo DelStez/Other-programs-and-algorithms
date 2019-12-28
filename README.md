@@ -1,1 +1,1 @@
-# Other-programs-and-algorithms
+# Other programs and algorithms
