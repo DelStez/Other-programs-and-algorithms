@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Markovs", "Markovs.csproj", "{6D048719-842C-423D-9567-A1E706C7A15B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D048719-842C-423D-9567-A1E706C7A15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D048719-842C-423D-9567-A1E706C7A15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D048719-842C-423D-9567-A1E706C7A15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D048719-842C-423D-9567-A1E706C7A15B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DE159E6D-EEA8-4BF1-850F-F6383946AEF0}
+	EndGlobalSection
+EndGlobal
