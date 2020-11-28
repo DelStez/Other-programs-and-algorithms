@@ -39,27 +39,31 @@ namespace MT
                 {
                     if (tableOfInfo.Columns[i].HeaderText.ToString() == Val)
                     {
-                        var cellCommand = tableOfInfo.Rows[State].Cells[i].Value.ToString();
-                        string[] symbolAndNextState = cellCommand.Split(moveSymbol).ToArray();
-                        var moveVector = Array.Find(cellCommand.ToCharArray(), x => moveSymbol.Contains(x)).ToString();
-
-
-
-                        List<string>temp = new List<string>(tableOfInfo.Rows[State].Cells[i].Value.ToString().Split(',').ToArray());
-                        if(temp[0] != " ") dataGridView2.Rows[0].Cells[midlle].Value = temp[0];
-                        if (temp[1] == "R") midlle++;
-                        else if (temp[1] == "L") midlle--; 
-                        dataGridView2.CurrentCell = dataGridView2[midlle, 0];
-                        if (temp[2] != "!")
+                        try
                         {
-                            if (temp[2].ToString() != " " && Convert.ToInt32(temp[2].Replace("q", "")) != State)
+                            var cellCommand = tableOfInfo.Rows[State].Cells[i].Value.ToString();
+                            string[] symbolAndNextState = cellCommand.Split(moveSymbol).ToArray();
+                            var moveVector = Array.Find(cellCommand.ToCharArray(), x => moveSymbol.Contains(x)).ToString();
+                            dataGridView2.Rows[0].Cells[midlle].Value = symbolAndNextState[0];
+                            if (moveVector == moveSymbol[0].ToString()) midlle++;
+                            else if (moveVector == moveSymbol[2].ToString()) midlle--;
+                            dataGridView2.CurrentCell = dataGridView2[midlle, 0];
+
+                            if (symbolAndNextState[1] != "!")
                             {
-                                State = Convert.ToInt32(temp[2].Replace("q", ""));
-                                break;
+                                if (Convert.ToInt32(symbolAndNextState[1]) != State)
+                                {
+                                    State = Convert.ToInt32(symbolAndNextState[2]);
+                                    break;
+                                }
                             }
+                            else { end = true; break; }
                         }
-                        else { end = true; break; }
-                         
+                        catch (System.NullReferenceException)
+                        {
+                            MessageBox.Show($"Нет команды в ячейке ( {tableOfInfo.Columns[i].HeaderText}, q{State})");
+                            end = true; break;
+                        }
                     }
                     i++;
                 }
@@ -171,7 +175,7 @@ namespace MT
                         {
                             string temp = "";
                             if (c[0] == "")
-                                temp += e.ColumnIndex.ToString();
+                                temp += tableOfInfo.Columns[e.ColumnIndex].HeaderText;
                             else
                             {
                                 temp += c[0].ToString();
