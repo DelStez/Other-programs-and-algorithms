@@ -46,14 +46,14 @@ namespace MT
                             var moveVector = Array.Find(cellCommand.ToCharArray(), x => moveSymbol.Contains(x)).ToString();
                             dataGridView2.Rows[0].Cells[midlle].Value = symbolAndNextState[0];
                             if (moveVector == moveSymbol[0].ToString()) midlle++;
-                            else if (moveVector == moveSymbol[2].ToString()) midlle--;
+                            else if (moveVector == moveSymbol[1].ToString()) midlle--;
                             dataGridView2.CurrentCell = dataGridView2[midlle, 0];
 
                             if (symbolAndNextState[1] != "!")
                             {
                                 if (Convert.ToInt32(symbolAndNextState[1]) != State)
                                 {
-                                    State = Convert.ToInt32(symbolAndNextState[2]);
+                                    State = Convert.ToInt32(symbolAndNextState[1]);
                                     break;
                                 }
                             }
@@ -82,7 +82,6 @@ namespace MT
                 i++;
             }
             int x = dataGridView2.Columns[200/ 2].DisplayIndex;
-            dataGridView2.CurrentCell = dataGridView2[200 / 2, 0];
             dataGridView2.FirstDisplayedScrollingColumnIndex = x - dataGridView2.DisplayedColumnCount(true) / 2;
 
         }
@@ -101,7 +100,6 @@ namespace MT
                 i++;
             }
             int x = dataGridView2.Columns[200 / 2].DisplayIndex;
-            dataGridView2.CurrentCell = dataGridView2[200 / 2, 0];
             dataGridView2.FirstDisplayedScrollingColumnIndex = x - dataGridView2.DisplayedColumnCount(true) / 2;
             while (1 < tableOfInfo.Columns.Count - 1) tableOfInfo.Columns.RemoveAt(1);
             while (1 < tableOfInfo.Rows.Count) tableOfInfo.Rows.RemoveAt(1);
@@ -118,9 +116,10 @@ namespace MT
             }
 
             string StrForMachine = (InputBox.Text).ToString();
+            var ind = dataGridView2.CurrentCell.ColumnIndex;
             for (int i = 0; i < StrForMachine.Length; i++)
             {
-                dataGridView2[(200 / 2) + i, 0].Value = StrForMachine[i];
+                dataGridView2[dataGridView2.CurrentCell.ColumnIndex + i, 0].Value = StrForMachine[i];
             }
         }
 
