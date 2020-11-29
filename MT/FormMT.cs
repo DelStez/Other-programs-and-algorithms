@@ -15,13 +15,13 @@ namespace MT
         public FormMT()
         {
             InitializeComponent();
+            LongOfTape.SelectedIndex = 0;
             tableOfInfo.Rows.Add();
             tableOfInfo.Rows[0].Cells[0].Value = "q0";
            
             
         }
-
-        protected char[] moveSymbol = { '>', '<', '.' }; // right, left, stay
+   
         string[,] Rules; 
         string alfabetstr;
         public void Machine()
@@ -39,31 +39,21 @@ namespace MT
                 {
                     if (tableOfInfo.Columns[i].HeaderText.ToString() == Val)
                     {
-                        try
+                        List<string>temp = new List<string>(tableOfInfo.Rows[State].Cells[i].Value.ToString().Split(',').ToArray());
+                        if(temp[0] != " ") dataGridView2.Rows[0].Cells[midlle].Value = temp[0];
+                        if (temp[1] == "R") midlle++;
+                        else if (temp[1] == "L") midlle--; 
+                        dataGridView2.CurrentCell = dataGridView2[midlle, 0];
+                        if (temp[2] != "!")
                         {
-                            var cellCommand = tableOfInfo.Rows[State].Cells[i].Value.ToString();
-                            string[] symbolAndNextState = cellCommand.Split(moveSymbol).ToArray();
-                            var moveVector = Array.Find(cellCommand.ToCharArray(), x => moveSymbol.Contains(x)).ToString();
-                            dataGridView2.Rows[0].Cells[midlle].Value = symbolAndNextState[0];
-                            if (moveVector == moveSymbol[0].ToString()) midlle++;
-                            else if (moveVector == moveSymbol[1].ToString()) midlle--;
-                            dataGridView2.CurrentCell = dataGridView2[midlle, 0];
-
-                            if (symbolAndNextState[1] != "!")
+                            if (temp[2].ToString() != " " && Convert.ToInt32(temp[2].Replace("q", "")) != State)
                             {
-                                if (Convert.ToInt32(symbolAndNextState[1]) != State)
-                                {
-                                    State = Convert.ToInt32(symbolAndNextState[1]);
-                                    break;
-                                }
+                                State = Convert.ToInt32(temp[2].Replace("q", ""));
+                                break;
                             }
-                            else { end = true; break; }
                         }
-                        catch (System.NullReferenceException)
-                        {
-                            MessageBox.Show($"Нет команды в ячейке ( {tableOfInfo.Columns[i].HeaderText}, q{State})");
-                            end = true; break;
-                        }
+                        else { end = true; break; }
+                         
                     }
                     i++;
                 }
@@ -73,15 +63,16 @@ namespace MT
         void CreateTape() 
         {
             int i = 0;
-            while (i <= 200)
+            while (i < Convert.ToInt32(LongOfTape.SelectedItem))
             {
                 DataGridViewTextBoxColumn k = new DataGridViewTextBoxColumn();
-                k.HeaderText = (i - 200 / 2).ToString();
+                k.HeaderText = (i - Convert.ToInt32(LongOfTape.SelectedItem) / 2).ToString();
                 dataGridView2.Columns.Add(k);
                 dataGridView2.Rows[0].Cells[i].Value = "_";
                 i++;
             }
-            int x = dataGridView2.Columns[200/ 2].DisplayIndex;
+            int x = dataGridView2.Columns[Convert.ToInt32(LongOfTape.SelectedItem) / 2].DisplayIndex;
+            dataGridView2.CurrentCell = dataGridView2[Convert.ToInt32(LongOfTape.SelectedItem) / 2, 0];
             dataGridView2.FirstDisplayedScrollingColumnIndex = x - dataGridView2.DisplayedColumnCount(true) / 2;
 
         }
@@ -93,13 +84,14 @@ namespace MT
         void CleanTapeAnInstructions()
         {
             int i = 0;
-            while (i <= 200)
+            while (i < Convert.ToInt32(LongOfTape.SelectedItem))
             {
                
                 dataGridView2.Rows[0].Cells[i].Value = "_";
                 i++;
             }
-            int x = dataGridView2.Columns[200 / 2].DisplayIndex;
+            int x = dataGridView2.Columns[Convert.ToInt32(LongOfTape.SelectedItem) / 2].DisplayIndex;
+            dataGridView2.CurrentCell = dataGridView2[Convert.ToInt32(LongOfTape.SelectedItem) / 2, 0];
             dataGridView2.FirstDisplayedScrollingColumnIndex = x - dataGridView2.DisplayedColumnCount(true) / 2;
             while (1 < tableOfInfo.Columns.Count - 1) tableOfInfo.Columns.RemoveAt(1);
             while (1 < tableOfInfo.Rows.Count) tableOfInfo.Rows.RemoveAt(1);
@@ -116,13 +108,11 @@ namespace MT
             }
 
             string StrForMachine = (InputBox.Text).ToString();
-            var ind = dataGridView2.CurrentCell.ColumnIndex;
             for (int i = 0; i < StrForMachine.Length; i++)
             {
-                dataGridView2[dataGridView2.CurrentCell.ColumnIndex + i, 0].Value = StrForMachine[i];
+                dataGridView2[(Convert.ToInt32(LongOfTape.SelectedItem) / 2) + i, 0].Value = StrForMachine[i];
             }
         }
-
 
         private void startButton_Click(object sender, EventArgs e)
         {
@@ -134,6 +124,7 @@ namespace MT
             CleanTapeAnInstructions();
             Alphabet.Clear();
             InputBox.Clear();
+            LongOfTape.SelectedIndex = 0;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -148,51 +139,10 @@ namespace MT
             tableOfInfo.Rows.RemoveAt(tableOfInfo.Rows.Count - 1);
         }
 
-        private void tableOfInfo_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void LongOfTape_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            try
-            {
-                var currentContent = tableOfInfo[e.ColumnIndex, e.RowIndex].Value.ToString();
-                Type type = e.GetType();
-                if (!currentContent.Contains("q"))
-                {
-                    string[] c = currentContent.Split(moveSymbol).ToArray();
-                    if (c.Length == 1)
-                    {
-                        MessageBox.Show("Не задана команда перехода");
-                        tableOfInfo[e.ColumnIndex, e.RowIndex].Value = null;
-                    }
-                    else
-                    {
-                        if (c[1] != "!" && c[1] != "" && Convert.ToInt32(c[1]) > tableOfInfo.Rows.Count - 1)
-                        {
-                            MessageBox.Show("Неверный номер состояния");
-                            tableOfInfo[e.ColumnIndex, e.RowIndex].Value = null;
-                        }
-                        else
-                        {
-                            string temp = "";
-                            if (c[0] == "")
-                                temp += tableOfInfo.Columns[e.ColumnIndex].HeaderText;
-                            else
-                            {
-                                temp += c[0].ToString();
-                            }
-                            temp += Array.Find(currentContent.ToCharArray(), x => moveSymbol.Contains(x)).ToString();
-                            if (c[1] == "")
-                                temp += e.RowIndex.ToString();
-                            else if (c[1] == "!" || c[1] != "" && Convert.ToInt32(c[1]) <= tableOfInfo.Rows.Count - 1)
-                            {
-                                temp += c[1].ToString();
-                            }
-
-                            tableOfInfo[e.ColumnIndex, e.RowIndex].Value = temp;
-                        }                        
-                    }
-                }
-            }
-            catch (System.NullReferenceException){ }
+            dataGridView2.Columns.Clear();
+            CreateTape();
         }
     }
 }
