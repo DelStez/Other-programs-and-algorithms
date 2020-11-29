@@ -1,6 +1,6 @@
-﻿namespace MT
+﻿namespace MP
 {
-    partial class FormMT
+    partial class FormMP
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -31,12 +31,8 @@
             this.tableOfInfo = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.labelAlpha = new System.Windows.Forms.Label();
-            this.Alphabet = new System.Windows.Forms.TextBox();
-            this.InputBox = new System.Windows.Forms.TextBox();
-            this.labelInput = new System.Windows.Forms.Label();
-            this.getButton = new System.Windows.Forms.Button();
             this.StartButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
@@ -58,7 +54,8 @@
             this.tableOfInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableOfInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2});
+            this.Column2,
+            this.Column3});
             this.tableOfInfo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(140)))), ((int)(((byte)(99)))));
             this.tableOfInfo.Location = new System.Drawing.Point(95, 148);
             this.tableOfInfo.MultiSelect = false;
@@ -77,8 +74,13 @@
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "_";
+            this.Column2.HeaderText = "Команда";
             this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Переход";
+            this.Column3.Name = "Column3";
             // 
             // dataGridView2
             // 
@@ -88,7 +90,7 @@
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.EnableHeadersVisualStyles = false;
-            this.dataGridView2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(140)))), ((int)(((byte)(99)))));
+            this.dataGridView2.GridColor = System.Drawing.Color.Black;
             this.dataGridView2.Location = new System.Drawing.Point(1, 35);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
@@ -96,56 +98,7 @@
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.dataGridView2.Size = new System.Drawing.Size(740, 77);
             this.dataGridView2.TabIndex = 1;
-            // 
-            // labelAlpha
-            // 
-            this.labelAlpha.AutoSize = true;
-            this.labelAlpha.Location = new System.Drawing.Point(10, 12);
-            this.labelAlpha.Name = "labelAlpha";
-            this.labelAlpha.Size = new System.Drawing.Size(54, 13);
-            this.labelAlpha.TabIndex = 4;
-            this.labelAlpha.Text = "Алфавит:";
-            // 
-            // Alphabet
-            // 
-            this.Alphabet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(199)))), ((int)(((byte)(193)))));
-            this.Alphabet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Alphabet.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(140)))), ((int)(((byte)(99)))));
-            this.Alphabet.Location = new System.Drawing.Point(70, 9);
-            this.Alphabet.Name = "Alphabet";
-            this.Alphabet.Size = new System.Drawing.Size(155, 20);
-            this.Alphabet.TabIndex = 5;
-            // 
-            // InputBox
-            // 
-            this.InputBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(199)))), ((int)(((byte)(193)))));
-            this.InputBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.InputBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(140)))), ((int)(((byte)(99)))));
-            this.InputBox.Location = new System.Drawing.Point(327, 9);
-            this.InputBox.Name = "InputBox";
-            this.InputBox.Size = new System.Drawing.Size(137, 20);
-            this.InputBox.TabIndex = 6;
-            // 
-            // labelInput
-            // 
-            this.labelInput.AutoSize = true;
-            this.labelInput.Location = new System.Drawing.Point(231, 12);
-            this.labelInput.Name = "labelInput";
-            this.labelInput.Size = new System.Drawing.Size(90, 13);
-            this.labelInput.TabIndex = 7;
-            this.labelInput.Text = "Входная строка:";
-            // 
-            // getButton
-            // 
-            this.getButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(112)))), ((int)(((byte)(86)))));
-            this.getButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.getButton.Location = new System.Drawing.Point(470, 7);
-            this.getButton.Name = "getButton";
-            this.getButton.Size = new System.Drawing.Size(75, 23);
-            this.getButton.TabIndex = 8;
-            this.getButton.Text = "Принять";
-            this.getButton.UseVisualStyleBackColor = false;
-            this.getButton.Click += new System.EventHandler(this.getButton_Click);
+            this.dataGridView2.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDoubleClick);
             // 
             // StartButton
             // 
@@ -197,7 +150,7 @@
             this.removeButton.UseVisualStyleBackColor = false;
             this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
             // 
-            // FormMT
+            // FormMP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,23 +160,17 @@
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.StartButton);
-            this.Controls.Add(this.getButton);
-            this.Controls.Add(this.labelInput);
-            this.Controls.Add(this.InputBox);
-            this.Controls.Add(this.Alphabet);
-            this.Controls.Add(this.labelAlpha);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.tableOfInfo);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(140)))), ((int)(((byte)(99)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "FormMT";
+            this.Name = "FormMP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "MT";
+            this.Text = "MP";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tableOfInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -231,17 +178,13 @@
 
         private System.Windows.Forms.DataGridView tableOfInfo;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Label labelAlpha;
-        private System.Windows.Forms.TextBox Alphabet;
-        private System.Windows.Forms.TextBox InputBox;
-        private System.Windows.Forms.Label labelInput;
-        private System.Windows.Forms.Button getButton;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 
