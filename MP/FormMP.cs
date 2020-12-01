@@ -19,8 +19,7 @@ namespace MP
             tableOfInfo.Rows[0].Cells[0].Value = "1";
         }
         protected char[] moveSymbol = { '>', '<', '0','1', '?','.' }; // right, left, stay
-        string[,] Rules;
-        string alfabetstr;
+
         public void Machine()
         {
             int midlle = dataGridView2.CurrentCell.ColumnIndex;
@@ -37,10 +36,13 @@ namespace MP
                     {
                         if (tableOfInfo[1, i].Value != null)
                         {
-                            string[] v = tableOfInfo[1, i].Value.ToString().Split(',').ToArray();
-                            if (v[0] != "" || v[1] != "")
+                            string[] v = tableOfInfo[2, i].Value.ToString().Split(',').ToArray();
+                            if (v[0] != "" && v[1] != "")
                             {
-                                i = (dataGridView2[midlle,0].Value.ToString() != " " ? Convert.ToInt32(v[1]) : Convert.ToInt32(v[0]));
+                                if(dataGridView2[midlle, 0].Value.ToString() != " ")
+                                   i = Convert.ToInt32(v[1])-1;
+                                else
+                                   i = Convert.ToInt32(v[0])-1;
                             }
                             else
                             {
@@ -55,7 +57,7 @@ namespace MP
                         midlle++;
                         if (tableOfInfo[2, i].Value != null)
                         {
-                            i = Convert.ToInt32(tableOfInfo[2, i].Value.ToString());
+                            i = Convert.ToInt32(tableOfInfo[2, i].Value.ToString())-1;
                         }
                         else
                         {
@@ -68,11 +70,11 @@ namespace MP
                         midlle--;
                         if (tableOfInfo[2, i].Value != null)
                         {
-                            i = Convert.ToInt32(tableOfInfo[2, i].Value.ToString());
+                            i = Convert.ToInt32(tableOfInfo[2, i].Value.ToString())-1;
                         }
                         else
                         {
-                            i--;
+                            i++;
                         }
                     }
                     else if (command == '0'.ToString())
