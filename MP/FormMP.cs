@@ -80,7 +80,15 @@ namespace MP
                         if (dataGridView2[midlle, 0].Value.ToString() != " ")
                         {
                             dataGridView2[midlle, 0].Value = " ";
-                            i++;
+                            if (tableOfInfo[2, i].Value != null)
+                            {
+                                i = Convert.ToInt32(tableOfInfo[2, i].Value.ToString());
+                            }
+                            else
+                            {
+                                i++;
+                            }
+                            
                         }
                         else
                         {
@@ -93,7 +101,14 @@ namespace MP
                         if (dataGridView2[midlle, 0].Value.ToString() != "▌")
                         {
                             dataGridView2[midlle, 0].Value = "▌";
-                            i++;
+                            if (tableOfInfo[2, i].Value != null)
+                            {
+                                i = Convert.ToInt32(tableOfInfo[2, i].Value.ToString());
+                            }
+                            else
+                            {
+                                i++;
+                            }
                         }
                         else
                         {
