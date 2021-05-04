@@ -57,15 +57,14 @@
             this.Column2,
             this.Column3});
             this.tableOfInfo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(140)))), ((int)(((byte)(99)))));
-            this.tableOfInfo.Location = new System.Drawing.Point(95, 148);
+            this.tableOfInfo.Location = new System.Drawing.Point(100, 118);
             this.tableOfInfo.MultiSelect = false;
             this.tableOfInfo.Name = "tableOfInfo";
             this.tableOfInfo.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tableOfInfo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.tableOfInfo.RowHeadersVisible = false;
-            this.tableOfInfo.Size = new System.Drawing.Size(636, 253);
+            this.tableOfInfo.Size = new System.Drawing.Size(303, 233);
             this.tableOfInfo.TabIndex = 0;
-            this.tableOfInfo.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableOfInfo_CellEndEdit);
             // 
             // Column1
             // 
@@ -91,12 +90,12 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.EnableHeadersVisualStyles = false;
             this.dataGridView2.GridColor = System.Drawing.Color.Black;
-            this.dataGridView2.Location = new System.Drawing.Point(1, 35);
+            this.dataGridView2.Location = new System.Drawing.Point(6, 4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.dataGridView2.Size = new System.Drawing.Size(740, 77);
+            this.dataGridView2.Size = new System.Drawing.Size(397, 108);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseDoubleClick);
             // 
@@ -105,7 +104,7 @@
             this.StartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(112)))), ((int)(((byte)(86)))));
             this.StartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StartButton.Location = new System.Drawing.Point(1, 118);
+            this.StartButton.Location = new System.Drawing.Point(6, 118);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(75, 23);
             this.StartButton.TabIndex = 9;
@@ -118,7 +117,7 @@
             this.clearButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.clearButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(112)))), ((int)(((byte)(86)))));
             this.clearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clearButton.Location = new System.Drawing.Point(82, 119);
+            this.clearButton.Location = new System.Drawing.Point(6, 147);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(75, 23);
             this.clearButton.TabIndex = 10;
@@ -130,7 +129,7 @@
             // 
             this.addButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(112)))), ((int)(((byte)(86)))));
             this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addButton.Location = new System.Drawing.Point(13, 171);
+            this.addButton.Location = new System.Drawing.Point(6, 176);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 12;
@@ -142,7 +141,7 @@
             // 
             this.removeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(97)))), ((int)(((byte)(112)))), ((int)(((byte)(86)))));
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.removeButton.Location = new System.Drawing.Point(13, 200);
+            this.removeButton.Location = new System.Drawing.Point(6, 205);
             this.removeButton.Name = "removeButton";
             this.removeButton.Size = new System.Drawing.Size(75, 23);
             this.removeButton.TabIndex = 13;
@@ -155,7 +154,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(32)))), ((int)(((byte)(27)))));
-            this.ClientSize = new System.Drawing.Size(743, 404);
+            this.ClientSize = new System.Drawing.Size(410, 363);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.clearButton);

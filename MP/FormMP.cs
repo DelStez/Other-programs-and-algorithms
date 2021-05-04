@@ -18,7 +18,7 @@ namespace MP
             tableOfInfo.Rows.Add();
             tableOfInfo.Rows[0].Cells[0].Value = "1";
         }
-        protected char[] moveSymbol = { '>', '<', '0','1', '?','.' }; // right, left, stay
+        protected char[] moveSymbol = { '>', '<', '0', '1', '?', '.' }; // right, left, stay
         string[,] Rules;
         string alfabetstr;
         public void Machine()
@@ -40,7 +40,7 @@ namespace MP
                             string[] v = tableOfInfo[1, i].Value.ToString().Split(',').ToArray();
                             if (v[0] != "" || v[1] != "")
                             {
-                                i = (dataGridView2[midlle,0].Value.ToString() != " " ? Convert.ToInt32(v[1]) : Convert.ToInt32(v[0]));
+                                i = (dataGridView2[midlle, 0].Value.ToString() != " " ? Convert.ToInt32(v[1]) : Convert.ToInt32(v[0]));
                             }
                             else
                             {
@@ -61,7 +61,7 @@ namespace MP
                         {
                             i++;
                         }
-                        
+
                     }
                     else if (command == '<'.ToString())
                     {
@@ -88,7 +88,7 @@ namespace MP
                             {
                                 i++;
                             }
-                            
+
                         }
                         else
                         {
@@ -128,15 +128,15 @@ namespace MP
         void CreateTape()
         {
             int i = 0;
-            while (i <= 200)
+            while (i <= 4)
             {
                 DataGridViewTextBoxColumn k = new DataGridViewTextBoxColumn();
-                k.HeaderText = (i - 200 / 2).ToString();
+                k.HeaderText = (i - 4 / 2).ToString();
                 dataGridView2.Columns.Add(k);
                 dataGridView2.Rows[0].Cells[i].Value = " ";
                 i++;
             }
-            int x = dataGridView2.Columns[200 / 2].DisplayIndex;
+            int x = dataGridView2.Columns[4 / 2].DisplayIndex;
             dataGridView2.FirstDisplayedScrollingColumnIndex = x - dataGridView2.DisplayedColumnCount(true) / 2;
 
         }
@@ -148,13 +148,13 @@ namespace MP
         void CleanTapeAnInstructions()
         {
             int i = 0;
-            while (i <= 200)
+            while (i <= 4)
             {
 
                 dataGridView2.Rows[0].Cells[i].Value = " ";
                 i++;
             }
-            int x = dataGridView2.Columns[200 / 2].DisplayIndex;
+            int x = dataGridView2.Columns[4 / 2].DisplayIndex;
             dataGridView2.FirstDisplayedScrollingColumnIndex = x - dataGridView2.DisplayedColumnCount(true) / 2;
         }
 
@@ -173,18 +173,12 @@ namespace MP
         {
             tableOfInfo.Rows.Add();
             int u = tableOfInfo.Rows.Count;
-            tableOfInfo.Rows[u-1].Cells[0].Value = u.ToString();
+            tableOfInfo.Rows[u - 1].Cells[0].Value = u.ToString();
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
             tableOfInfo.Rows.RemoveAt(tableOfInfo.Rows.Count - 1);
-        }
-
-        private void tableOfInfo_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-
-            
         }
 
         private void dataGridView2_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -195,7 +189,6 @@ namespace MP
             }
             else
                 dataGridView2[e.ColumnIndex, e.RowIndex].Value = "▌";
-            
         }
     }
 }
